@@ -1,5 +1,6 @@
 from pathlib import Path
 import numpy as np
+import matplotlib.pyplot as plt
 import torch
 
 root = Path(__file__).resolve().parents[1]
@@ -60,3 +61,16 @@ print("Training trajectories shape:", trajectories_tensor_train.shape)  # (num_t
 print("Training controls shape:", controls_tensor_train.shape)          # (num_train_traj, 99, 2)
 print("Testing trajectories shape:", trajectories_tensor_test.shape)     # (num_test_traj, 100, 24)
 print("Testing controls shape:", controls_tensor_test.shape)             # (num_test_traj, 99, 2)
+
+train_controls_flat = controls_train.reshape(-1, controls_train.shape[-1])  # (num_train_traj * 99, 2)
+
+plt.figure(figsize=(12, 4))
+for i in range(train_controls_flat.shape[1]):
+    plt.plot(train_controls_flat[:, i], ".", label=f"Control dimension {i}", alpha=0.7)
+
+plt.xlabel("Sample index")
+plt.ylabel("Control value")
+plt.title("All training control points")
+plt.legend()
+plt.tight_layout()
+plt.show()

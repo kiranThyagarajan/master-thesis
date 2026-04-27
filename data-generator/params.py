@@ -27,6 +27,6 @@ def get_params():
         "Kd": np.diag([10.0, 8.0]),
 
         # fixed target state
-        "q_target": np.array([np.deg2rad(80.0), np.deg2rad(35.0)]),
+        "q_target": np.array([np.deg2rad(120.0), np.deg2rad(-90.0)]),
         "qdot_target": np.array([0.0, 0.0]),
     }
